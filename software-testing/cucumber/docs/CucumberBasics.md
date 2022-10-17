@@ -86,7 +86,7 @@
     </dependencies>
 
     <properties>
-        <cucumber.version>6.10.3</cucumber.version>
+        <cucumber.version>7.0.0</cucumber.version>
         <cucumber-reporting.version>5.4.0</cucumber-reporting.version>
         <selenium.version>3.141.59</selenium.version>
         <webdrivermanager.version>4.3.1</webdrivermanager.version>
@@ -100,9 +100,9 @@
 
 <img src="../assets/img_5.png">
 
-## 4. Selenium Java Test
+### 3.1 Selenium Java Test
 
-让我们首先为登录功能编写一个简单的Selenium Test脚本，然后将该脚本转换为Cucumber脚本，以便更好地理解它。
+让我们首先为登录功能编写一个简单的Java Selenium测试脚本，然后将该脚本转换为Cucumber脚本，以便更好地理解它。
 
 新建一个名为selenium的包，在该包中新建一个FirstSeleniumTest测试类：
 
@@ -170,14 +170,14 @@ class FirstSeleniumUnitTest {
 }
 ```
 
-现在，要开始测试，只需在Intellij中右键选择Run 'FirstSeleniumUnitTest'，或者使用快捷键Ctrl+Shift+F10即可运行该测试脚本。
+要执行测试，只需在Intellij中右键选择Run 'FirstSeleniumUnitTest'，或者使用快捷键Ctrl+Shift+F10即可运行该测试脚本。
 大约几秒钟后，你的Chrome浏览器将打开，在测试脚本的帮助下，Selenium将启动Online Store演示应用程序，并执行登录。
 
 ## 4. Cucumber Feature文件
 
-Cucumber建议使用Given/When/Then格式编写scenario。
+Cucumber建议使用Given/When/Then格式编写Scenario。
 在Cucumber Selenium Java测试的最后一节中，我们决定在shop.demoqa.com上使用登录场景。
-在本章中，我们将用Cucumber格式(feature文件)编写一个测试。
+在本章中，我们将用Cucumber格式(Feature文件)编写一个测试。
 
 ### 4.1 什么是Cucumber Feature文件
 
@@ -187,8 +187,8 @@ Cucumber建议使用Given/When/Then格式编写scenario。
 
 <img src="../assets/img_7.png">
 
-为了让Cucumber自动检测feature文件，你需要确保它们的文件扩展名为feature。
-例如在本例中，我将它命名为“LogIn_Test.feature”。每个“feature”文件通常由单个特性组成。
+为了让Cucumber自动检测Feature文件，你需要确保它们的文件扩展名为.feature。
+例如在本例中，我将它命名为“LogIn_Test.feature”。每个“Feature”文件通常由单个功能组成。
 
 编写第一个Cucumber脚本。在BDD术语中，Scenario如下所示：
 
@@ -207,11 +207,11 @@ Feature: Login Action
 ```
 
 注意：这是Cucumber中的一个简单测试。如果你不理解，不要担心语法。
-理想情况下，你应该能够通过阅读feature文件中的测试来理解测试的意图。我们会在下一章更详细地讨论这一点。
+理想情况下，你应该能够通过阅读Feature文件中的步骤语句来理解测试的意图，我们会在下一章更详细地讨论这一点。
 
 ### 4.2 关键字
 
-现在，我们已经定义了一个测试。你会注意到测试的彩色部分(Feature、Scenario、Given、When、And、Then)。这些是由Gherkin定义的关键字。
+现在，我们已经定义了一个测试。你会注意到测试的彩色部分(Feature、Scenario、Given、When、And、Then)，这些是由Gherkin定义的关键字。
 Gherkin还有很多的关键词，我们将在接下来的教程中介绍。但首先，我们可以快速的解释一下这些关键字的意思：
 
 |   关键字   |          含义           |
@@ -230,16 +230,16 @@ Gherkin还有很多的关键词，我们将在接下来的教程中介绍。但�
 回过头来，当我们使用BDD/BRDSL时能够以更可读的格式描述测试。在上面的测试中，仅仅通过阅读就可以很清楚地知道测试会做什么。
 在作为测试的同时，它还记录了应用程序的行为。这是BDD/BRDSL的真正力量，它最终将成为Cucumber的力量，因为Cucumber的工作原理是相同的。
 
-## 5. Junit测试
+## 5. JUnit测试
 
 现在我们已经定义了测试，是时候运行我们的测试了。但在此之前，我们必须添加一个用于运行测试的类。Cucumber使用JUnit框架运行。
 当Cucumber使用JUnit时，我们需要一个Test Runner类。
-这个类将使用JUnit的@RunWith()注解，它告诉JUnit使用哪个类作为测试Runner，更像是JUnit开始执行测试的起点。
+这个类将使用JUnit的@RunWith()注解，它告诉JUnit使用哪个类作为测试Runner，就像是JUnit开始执行测试的起点。
 
-### 5.1 Junit Test Runner类
+### 5.1 JUnit Test Runner类
 
-我们可以新建一个RunCucumberTest类，这个类只需要添加注解来通过它运行Cucumber，并且你可以指定要获取的feature文件以及step包的位置。
-它还可以配置其他一些参数，稍后将在Cucumber Options中讨论。
+我们可以新建一个RunCucumberTest类，这个类只需要添加注解来通过它运行Cucumber，并且你可以指定要获取的Feature文件以及Step Definition类的位置。
+还可以配置其他一些参数，稍后将在Cucumber Options中讨论。
 
 ```java
 import org.junit.runner.RunWith;
@@ -260,8 +260,8 @@ public class RunCucumberTest {
 
 @RunWith注解告诉JUnit应该使用Cucumber类来运行测试。
 
-第二个注解@CucumbelOptions告诉Cucumber在哪里查找feature文件、使用什么报告系统等等。
-在上面的测试中，我们指定了feature文件所在的目录，以及Step类所在的包。
+第二个注解@CucumbelOptions告诉Cucumber在哪里查找Feature文件、使用什么报告系统等等。
+在上面的测试中，我们指定了Feature文件所在的目录，以及Step Definition类所在的包。
 
 ### 5.3 运行Cucumber测试
 
@@ -274,19 +274,19 @@ public class RunCucumberTest {
 <img src="../assets/img_9.png">
 
 你可能会想，执行这些测试的java代码在哪里？嗯，现在不用担心这个。当我们运行Cucumber测试的时候，可以在控制台看到一些关键信息。
-Cucumber给出了建议的实现方式，这样feature文件中提到的步骤就可以追溯到Java的方法，这些方法可以在执行feature文件时执行：
+Cucumber给出了建议的实现方式，这样Feature文件中提到的步骤就可以追溯到Java的方法，这些方法可以在执行Feature文件时执行：
 
 <img src="../assets/img_10.png">
 
-我们的下一个目标是测试或运行feature文件，为了测试feature文件，
-我们需要用java为feature文件中的每个步骤编写实现或步骤定义(Step Definition)。
-当Cucumber在Scenario中执行Step时，它将查找要执行的匹配的步骤定义。
+我们的下一个目标是测试或运行Feature文件，为了测试Feature文件，
+我们需要用java为Feature文件中的每个步骤编写实现或步骤定义(Step Definition)。
+当Cucumber在Scenario中执行步骤时，它将查找要执行的匹配的Step Definition方法。
 
 ## 6. 什么是Step Definition？
 
 Step Definition是带有模式的一小段代码，或者换句话说，Step Definition是类中的java方法，方法上面带有注解。
 模式后面的注解用于将步骤定义链接到所有匹配的步骤，代码是Cucumber在看到Gherkin步骤时将执行的代码。
-Cucumber通过CucumberOptions中的“glue”属性找到Step Definition文件。
+Cucumber通过CucumberOptions中的“glue”属性找到Step Definition类。
 
 ### 6.1 添加Step Definition类
 
@@ -299,7 +299,7 @@ public class LoginSteps {
 }
 ```
 
-回顾我们之前所提到的，当我们运行Cucumber测试时控制台给出了建议的Steps实现，因此我们首先可以直接将这些代码复制到我们的LoginSteps类中：
+回顾我们之前所提到的，当我们运行Cucumber测试时控制台给出了简单的步骤实现，因此我们首先可以直接将这些代码复制到我们的LoginSteps类中：
 
 ```java
 public class LoginSteps {
@@ -445,15 +445,15 @@ public class LoginSteps {
 }
 ```
 
-**注意**：确保为测试创建你自己的用户名和密码，并且不要尝试使用错误的密码登录，否则你将在网站上被陷入黑名单几个小时。
+**注意**：确保为测试创建你自己的用户名和密码，并且不要尝试使用错误的密码登录，否则你的IP将被网站拉入黑名单几小时。
 
 ### 6.3 运行Cucumber测试
 
-现在，我们可以运行我们的Cucumber feature文件，并且在控制台中，我们会看到类似如下的输出：
+现在，我们可以运行我们的Cucumber Feature文件，并且在控制台中，我们会看到类似如下的输出：
 
 <img src="../assets/img_11.png">
 
-Cucumber通过读取feature文件中的步骤定义开始执行。
+Cucumber通过读取Feature文件中的步骤定义开始执行。
 一旦Cucumber执行到第一步，例如Given语句，它会在Step Definition类中查找相同的语句对应的方法，一旦找到该方法，它就会执行方法内部编写的代码。
 
 ## 7. Gherkin关键字
@@ -475,7 +475,7 @@ Feature: LogIn Action Test
         Then Message displayed Login Successfully
 ```
 
-在上面的feature中，有一些语法高亮的词汇，这些是Gherkin的关键字，每个关键字都有一个含义。
+在上面的Feature文件中，有一些语法高亮的词汇，这些是Gherkin的关键字，每个关键字都有一个含义。
 现在我们会逐个讨论这些关键字，以下是Gherkin支持的关键字列表：
 
 + `Feature`
@@ -492,11 +492,11 @@ Feature: LogIn Action Test
 
 ### 7.1 Feature关键字
 
-每个Gherkin文件都以Feature关键字开头。Feature定义了你将在此feature文件中测试的逻辑测试功能。
+每个Gherkin文件都以Feature关键字开头。Feature定义了你将在此Feature文件中测试的逻辑功能。
 例如，如果你正在测试支付网关，则你的Feature将成为支付网关，或者如果你正在测试登录功能，则该Feature将成为登录。
 拥有一个Feature文件的想法是总结你将要测试的内容。这将作为你测试的文档，也是新团队成员的良好起点。
 
-请注意，Feature关键字出现在feature文件的开头：
+请注意，Feature关键字出现在Feature文件的开头：
 
 ```gherkin
 Feature: LogIn Action Test
@@ -518,7 +518,7 @@ Feature: LogIn Action Test
     This feature will test a LogIn and LogOut functionality
 ```
 
-请注意，Feature关键字之后的任何内容都将被视为功能描述。如上第二个示例所示，功能描述可以占多行。
+Feature关键字之后的任何内容都将被视为功能描述。如上第二个示例所示，功能描述可以占多行。
 **Feature关键字之后的所有内容：直到遇到下一个关键字都被视为功能描述**。并且注意Description不是Gherkin的关键字。
 
 ### 7.2 Rule关键字
@@ -542,14 +542,14 @@ Feature: OTP generation test
 
 ### 7.3 Background关键字
 
-Background关键字用于定义feature文件中所有测试通用的步骤。例如，对于购买产品的业务，一般需要执行以下步骤：
+Background关键字用于定义Feature文件中所有测试通用的步骤。例如，对于购买产品的业务，一般需要执行以下步骤：
 
 + 导航到主页
 + 单击登录链接
 + 输入用户名和密码
 + 点击提交按钮
 
-只有在完成这些步骤之后，你才能将产品添加到你的购物车并能够执行付款。现在，假设我们在一个feature文件中只测试“添加到购物车”这个功能，因此这些测试对于所有测试都是通用的。
+只有在完成这些步骤之后，你才能将产品添加到你的购物车并能够执行付款。现在，假设我们在一个Feature文件中只测试“添加到购物车”这个功能，因此这些测试对于所有测试都是通用的。
 因此，我们可以将这些步骤移动到Background关键字下，而不是为所有测试一次又一次地编写它们。以下是Background关键字的使用示例：
 
 ```gherkin
@@ -566,7 +566,7 @@ Feature: Add to Cart
 
 ### 7.4 Scenario关键字
 
-每个feature文件都将包含许多测试来测试该功能。每个测试都称为一个场景，并使用Scenario关键字进行描述：
+每个Feature文件都将包含许多测试来测试该功能。每个测试都称为一个场景，并使用Scenario关键字进行描述：
 
 ```gherkin
 Feature: Add to Cart
@@ -582,7 +582,7 @@ Feature: LogIn Action Test
     Scenario: Successful Login with Valid Credentials
 ```
 
-一个场景相当于我们常规开发过程中的一个测试。每个场景/测试基本上可以分为三个部分：
+一个场景相当于我们常规开发过程中的一个测试方法。每个场景/测试基本上可以分为三个部分：
 
 + 测试的前提条件，用(Given)关键字表示。
 + 测试步骤执行，用(When)关键字表示。
@@ -723,7 +723,7 @@ Feature: Login Action Test
 
 ## 8. Cucumber Options
 
-到目前为止，我们已经介绍了feature文件、Gherkins、Step Definition、Annotations、测试Runner类和许多其他内容。
+到目前为止，我们已经介绍了Feature文件、Gherkins、Step Definition、Annotations、测试Runner类和许多其他内容。
 毫无疑问，在你了解所有概念之前，你不能百分百正确的使用BDD框架，但是在Cucumber自动化的生命周期中，
 仍然有一些非常重要的领域需要了解，如Cucumber Options、正则表达式、页面对象工厂等。在本节中，我们重点介绍Cucumber Options。
 
